@@ -16,7 +16,9 @@ class RegisterUserRequest extends ApiRequest
         return [
             "last_name" => ["required"],
             "first_name" => ["required"],
-            "midlle_name" => ["required"]
+            "midlle_name" => ["required"],
+            "login" => ["required", "email", "unique:users"],
+            "password" => ["required", "min:8"]
         ];
     }
 }
