@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\v1\CategoriesController;
+use App\Http\Controllers\Api\v1\CitiesController;
+use App\Http\Controllers\Api\v1\CollectionsController;
 use App\Http\Controllers\Api\v1\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,3 +28,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [UserController::class, 'register']); //Register
 Route::post('/login', [UserController::class, 'login']); //Login
+
+/*
+ * Collection Routers
+ */
+
+Route::get('/collections/{id?}', [CollectionsController::class, 'getAll']);
+
+/*
+ * Cities Routers
+ */
+
+Route::get('/cities', [CitiesController::class, 'getAll']);
+
+/*
+ * Categories Routers
+ */
+Route::get('/categories/{id?}', [CategoriesController::class, 'getAll']);

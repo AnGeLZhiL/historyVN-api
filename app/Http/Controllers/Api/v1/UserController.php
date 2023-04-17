@@ -61,8 +61,16 @@ class UserController extends Controller
 
         if ($user && Hash::check($request->password, $user->password)){
 
+            /*
+             * Формирование токена для авторизирующегося ползователя
+             */
             $user->api_token = Str::random(200);
             $user->save();
+
+            /*
+             * Возврат ответа JSON в случает успешной авторизации.
+             * Возвращается статус true и данные авторизированного пользователя
+             */
 
             return response()
                 ->json([
@@ -71,6 +79,12 @@ class UserController extends Controller
                 ])
                 ->setStatusCode(200, "Authenticated");
         } else {
+
+            /*
+             * Возврат ответа JSON в случает неудачной авторизации.
+             * Возвращается статус false
+             */
+
             return response()
                 ->json([
                     "status" => false
