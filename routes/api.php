@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\v1\CategoriesController;
 use App\Http\Controllers\Api\v1\CitiesController;
 use App\Http\Controllers\Api\v1\CollectionsController;
+use App\Http\Controllers\Api\v1\ObjectsController;
 use App\Http\Controllers\Api\v1\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -45,3 +46,10 @@ Route::get('/cities', [CitiesController::class, 'getAll']);
  * Categories Routers
  */
 Route::get('/categories/{id?}', [CategoriesController::class, 'getAll']);
+
+/*
+ * Objects Routers
+ */
+
+Route::get('/objects/{id}',[ObjectsController::class, 'getObjects']);
+Route::get('/object/{id}',[ObjectsController::class, 'getObject']);

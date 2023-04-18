@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class CollectionsController extends Controller
 {
     /**
-     * Вывод сборников определенного погода по его id
+     * Вывод сборников определенного города по его id
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
