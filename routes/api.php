@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\v1\CategoriesController;
 use App\Http\Controllers\Api\v1\CitiesController;
 use App\Http\Controllers\Api\v1\CollectionsController;
 use App\Http\Controllers\Api\v1\ObjectsController;
+use App\Http\Controllers\Api\v1\TestsController;
 use App\Http\Controllers\Api\v1\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -53,3 +54,8 @@ Route::get('/categories/{id?}', [CategoriesController::class, 'getAll']);
 
 Route::get('/objects/{id}',[ObjectsController::class, 'getObjects']);
 Route::get('/object/{id}',[ObjectsController::class, 'getObject']);
+
+/*
+ * Tests Routers
+ */
+Route::get('/testscat/{id}', [TestsController::class, 'getTests']);
