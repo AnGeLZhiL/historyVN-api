@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterUserRequest;
+use App\Models\Tests;
 use App\Models\User;
 use App\Http\Requests\LoginUserRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -90,5 +92,13 @@ class UserController extends Controller
                     "status" => false
                 ],401);
         }
+    }
+
+    public function userTests(){
+        $usertests = User::with('tests')->findOrFail(Auth::id());
+
+        return response()
+            ->json($usertests->tests)
+            ->setStatusCode(200, 'Object information');
     }
 }

@@ -44,15 +44,23 @@ class ObjectsController extends Controller
          * Получение списка объектов по заданому id каталога
          */
 
-        $objects = Objects::where('id_object', $id)->get();
+        $object = Objects::with('tests')->findOrFail($id);
 
         /*
          * Возвращает список объектов
          */
 
         return response()
-            ->json($objects)
+            ->json($object)
             ->setStatusCode(200, 'Object information');
 
     }
+//
+//    public function testsObject(){
+//        $tests = Objects::with('tests')->get();
+//
+//        return response()
+//            ->json($tests)
+//            ->setStatusCode(200, 'Tests list');
+//    }
 }

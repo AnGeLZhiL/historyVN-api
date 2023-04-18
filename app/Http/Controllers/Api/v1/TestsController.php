@@ -16,4 +16,24 @@ class TestsController extends Controller
             ->json($tests)
             ->setStatusCode(200, 'Tests list');
     }
+
+//    public function testsObject(){
+//        $tests = Tests::with('objects')->get();
+//
+//        return response()
+//            ->json($tests)
+//            ->setStatusCode(200, 'Tests list');
+//    }
+
+    public function getTest($id){
+        $test = Tests::where('id_test', $id)->get();
+
+        return response()
+            ->json($test)
+            ->setStatusCode(200, 'Test Information');
+    }
+
+    public function userTests($id){
+
+    }
 }
