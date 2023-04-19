@@ -11,6 +11,4 @@ class Answers extends Model
     use HasFactory;
 
     protected $primaryKey = 'id_answer';
-
-    
 }
