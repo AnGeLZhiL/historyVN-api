@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\Tests;
 use App\Models\User;
 use App\Http\Requests\LoginUserRequest;
+use http\Env\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -94,11 +96,81 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * Получение списка пройденных тестов авторизированного пользователя
+     * @return \Illuminate\Http\JsonResponse
+     */
+
     public function userTests(){
+
+        /*
+         * Поиск пройденных тестов пользователя
+         */
+
         $usertests = User::with('tests')->findOrFail(Auth::id());
+
+        /*
+         * Возвращение списка пройденных тестов пользователя
+         */
 
         return response()
             ->json($usertests->tests)
-            ->setStatusCode(200, 'Object information');
+            ->setStatusCode(200, 'Tests user list');
+    }
+
+    /**
+     * Изменение данных пользователя
+     * @param UpdateUserRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+
+    public function userUpdate(UpdateUserRequest $request){
+
+        /*
+         * Поиск пользователя по введенному токену
+         */
+
+        $user = User::find(Auth::id());
+
+        /*
+         * Заполнение новыми значениями
+         */
+
+        $user->last_name = $request->last_name;
+        $user->first_name = $request->first_name;
+        $user->midlle_name = $request->midlle_name;
+        $user->login = $request->login;
+        $user->birthday = $request->birthday;
+
+        /*
+         * Сохранение новых данных
+         */
+
+        $result = $user->save();
+
+        /*
+         * Проверка
+         */
+
+        if($result){
+            return response()
+                ->json([
+                    "status" => true
+                ])
+                    ->setStatusCode(200, "Update");
+        } else {
+            return response()
+                ->json([
+                    "status" => false
+                ])
+                    ->setStatusCode(401, "Not update");
+        }
+    }
+
+    public function getUser(){
+        $user = User::where('id_user', Auth::id())->get();
+        return response()
+            ->json($user)
+            ->setStatusCode(200, 'User informations');
     }
 }

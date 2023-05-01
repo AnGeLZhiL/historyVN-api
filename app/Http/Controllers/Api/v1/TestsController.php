@@ -8,9 +8,23 @@ use Illuminate\Http\Request;
 
 class TestsController extends Controller
 {
+    /**
+     * Получение всех тестов определенной категории по ее id
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+
     public function getTests($id){
 
+        /*
+         * Поиск тестов по id категории
+         */
+
         $tests = Tests::where('id_test', $id)->get();
+
+        /*
+         * Возвращение списка тестов определенной категории
+         */
 
         return response()
             ->json($tests)
@@ -25,15 +39,26 @@ class TestsController extends Controller
 //            ->setStatusCode(200, 'Tests list');
 //    }
 
+    /**
+     * Получение информации о выбранном тесте
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+
     public function getTest($id){
+
+        /*
+         * Поиск теста по его id
+         */
+
         $test = Tests::where('id_test', $id)->get();
+
+        /*
+         * Возвращение информации о найденном тесте
+         */
 
         return response()
             ->json($test)
             ->setStatusCode(200, 'Test Information');
-    }
-
-    public function userTests($id){
-
     }
 }

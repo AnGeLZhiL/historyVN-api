@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\v1\CategoriesController;
 use App\Http\Controllers\Api\v1\CitiesController;
 use App\Http\Controllers\Api\v1\CollectionsController;
+use App\Http\Controllers\Api\v1\MailController;
 use App\Http\Controllers\Api\v1\ObjectsController;
 use App\Http\Controllers\Api\v1\QuestionsController;
 use App\Http\Controllers\Api\v1\TestsController;
@@ -40,6 +41,8 @@ Route::post('/login', [UserController::class, 'login']); //Login
 //});
 
 Route::middleware('auth:api')->get('/testsuser', [UserController::class, 'userTests']);
+Route::middleware('auth:api')->put('/user-update', [UserController::class, 'userUpdate']);
+Route::middleware('auth:api')->get('/user', [UserController::class, 'getUser']);
 
 //Route::middleware('auth')->get('/testsuser', [UserController::class, 'userTests']);
 
@@ -79,3 +82,9 @@ Route::get('/test/{id}', [TestsController::class, 'getTest']);
 
 Route::get('/questions/{id}', [QuestionsController::class, 'getQuestions']);
 Route::get('/answers/{id}', [QuestionsController::class, 'getAnswers']);
+
+/*
+ * Mail Routers
+ */
+
+Route::get('/sentcode', [MailController::class, 'sendCode']);
