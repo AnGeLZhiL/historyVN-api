@@ -20,12 +20,15 @@ class CitiesController extends Controller
          */
 
         /*
-         * hjbjbhj
+         * return response()
+            ->json(City::with('images')->get())
+            ->setStatusCode(200, "Cities list");return response()
+            ->json(City::with('images')->get())
+            ->setStatusCode(200, "Cities list");
          */
 
-
         return response()
-            ->json(City::with('images')->get())
+            ->json(City::all())
             ->setStatusCode(200, "Cities list");
     }
 }

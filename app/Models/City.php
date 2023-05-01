@@ -4,14 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class City extends Model
 {
     use HasFactory;
-
-    public function images() : BelongsTo{
+    /*
+     * public function images() : BelongsTo{
         return $this->belongsTo(Images::class, 'image_id', 'id_image');
     }
+     */
 }
