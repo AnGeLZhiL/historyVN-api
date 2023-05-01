@@ -19,6 +19,10 @@ class CitiesController extends Controller
          * Возврат полного списка городов
          */
 
+        /*
+         * hjbjbhj
+         */
+
 
         return response()
             ->json(City::with('images')->get())
