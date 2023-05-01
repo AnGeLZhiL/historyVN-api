@@ -19,16 +19,8 @@ class CitiesController extends Controller
          * Возврат полного списка городов
          */
 
-        /*
-         * return response()
-            ->json(City::with('images')->get())
-            ->setStatusCode(200, "Cities list");return response()
-            ->json(City::with('images')->get())
-            ->setStatusCode(200, "Cities list");
-         */
-
         return response()
-            ->json(City::all())
+            ->json(City::with('images')->get())
             ->setStatusCode(200, "Cities list");
     }
 }
