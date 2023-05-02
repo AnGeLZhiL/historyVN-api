@@ -87,4 +87,4 @@ Route::get('/answers/{id}', [QuestionsController::class, 'getAnswers']);
  * Mail Routers
  */
 
-Route::get('/sentcode', [MailController::class, 'sendCode']);
+//Route::get('/sentcode', [MailController::class, 'sendCode']);
